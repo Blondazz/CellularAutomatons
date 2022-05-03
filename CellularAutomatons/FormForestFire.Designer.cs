@@ -60,6 +60,7 @@ namespace CellularAutomatons
             // 
             // buttonRunFF
             // 
+            this.buttonRunFF.Enabled = false;
             this.buttonRunFF.Location = new System.Drawing.Point(12, 468);
             this.buttonRunFF.Name = "buttonRunFF";
             this.buttonRunFF.Size = new System.Drawing.Size(121, 23);

@@ -17,7 +17,7 @@ namespace CellularAutomatons
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Console.WriteLine("Choose an automaton \n1. 1D\n2. Game of Life\n3. Forest Fire\n4. LGA\n5. LBM");
+            Console.WriteLine("Choose an automaton \n1. 1D\n2. Game of Life\n3. Forest Fire\n4. LGA\n5. LBM\n6. Grain Growth");
             int choice = Int32.Parse(Console.ReadLine()!);
             switch (choice)
             {
@@ -136,6 +136,9 @@ namespace CellularAutomatons
                 case 5:
                     var lbm = new LBM.LBM();
                     lbm.Start();
+                    break;
+                case 6:
+                    Application.Run(new FormGrainGrowth());
                     break;
             }
             

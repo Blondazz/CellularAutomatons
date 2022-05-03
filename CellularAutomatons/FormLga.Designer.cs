@@ -54,6 +54,7 @@ namespace CellularAutomatons
             // 
             // buttonRunLga
             // 
+            this.buttonRunLga.Enabled = false;
             this.buttonRunLga.Location = new System.Drawing.Point(12, 468);
             this.buttonRunLga.Name = "buttonRunLga";
             this.buttonRunLga.Size = new System.Drawing.Size(121, 23);

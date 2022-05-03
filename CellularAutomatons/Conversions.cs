@@ -138,31 +138,21 @@ namespace CellularAutomatons
             var bitmap = new Bitmap(dBitmap.Bitmap);
             dBitmap.Dispose();
             return bitmap;
-            // Bitmap bitmap = new Bitmap(image[0].Length, image.Count);
-            // for (int i = 0; i < image.Count; i++)
-            // {
-            //     for (int j = 0; j < image[i].Length; j++)
-            //     {
-            //         if (image[i][j] == 0)
-            //             bitmap.SetPixel(j, i, Color.Black);
-            //         else if (image[i][j] == -1)
-            //             bitmap.SetPixel(j, i, Color.DodgerBlue);
-            //         else if (image[i][j] == 1)
-            //             bitmap.SetPixel(j, i, Color.DarkGreen);
-            //         else if (image[i][j] == 2)
-            //             bitmap.SetPixel(j, i, Color.Red);
-            //         else if (image[i][j] == 3)
-            //             bitmap.SetPixel(j, i, Color.FromArgb(200, 0, 0));
-            //         else if (image[i][j] == 4)
-            //             bitmap.SetPixel(j, i, Color.FromArgb(150, 0, 0));
-            //         else if (image[i][j] == 5)
-            //             bitmap.SetPixel(j, i, Color.FromArgb(100, 0, 0));
-            //         else if (image[i][j] == 6)
-            //             bitmap.SetPixel(j, i, Color.FromArgb(50, 0, 0));
-            //     }
-            // }
-            //
-            // return bitmap;
+        }
+
+        public static Bitmap ConvertJaggedGrainToBitmap(IReadOnlyList<int[]> image, int grainAmount, IReadOnlyList<Color> colorList)
+        {
+            var dBitmap = new DirectBitmap(image[0].Length, image.Count);
+            for (int i = 0; i < image.Count; i++)
+            {
+                for (int j = 0; j < image[0].Length; j++)
+                {
+                    dBitmap.SetPixel(j, i, colorList[image[i][j]]);
+                }
+            }
+            var bitmap = new Bitmap(dBitmap.Bitmap);
+            dBitmap.Dispose();
+            return bitmap;
         }
     }
 }
