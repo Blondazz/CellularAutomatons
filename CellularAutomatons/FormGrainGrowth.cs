@@ -111,23 +111,44 @@ namespace CellularAutomatons
                     _field[i][j] = 0;
                 }
             }
-
-            for (int i = 0; i < _grainAmount; i++)
+            if(location == GrainAutomatons.Location.Random)
+                for (int i = 0; i < _grainAmount; i++)
+                {
+                    var random = new Random();
+                    int x, y;
+                    Color color;
+                    do
+                    {
+                        x = random.Next(0, height);
+                        y = random.Next(0, width);
+                    } while (_field[x][y] != 0);
+                    _field[x][y] = i + 1;
+                    do
+                    {
+                        color = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
+                    } while (_colorList.Contains(color));
+                    _colorList.Add(color);
+                }
+            else
             {
-                var random = new Random();
-                int x, y;
-                Color color;
-                do
+                var distanceX = width / _grainAmount;
+                var distanceY = height / _grainAmount;
+                var grains = 0;
+                for (int i = 0; i < _grainAmount; i++)
                 {
-                    x = random.Next(0, height);
-                    y = random.Next(0, width);
-                } while (_field[x][y] != 0);
-                _field[x][y] = i + 1;
-                do
-                {
-                    color = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
-                } while (_colorList.Contains(color));
-                _colorList.Add(color);
+                    for (int j = 0; j < _grainAmount; j++)
+                    {
+                        grains++; 
+                        var random = new Random();
+                        Color color;
+                        _field[distanceY / 2 + j * distanceY][distanceX / 2 + i * distanceX] = grains;
+                        do
+                        {
+                            color = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
+                        } while (_colorList.Contains(color));
+                        _colorList.Add(color);
+                    }
+                }
             }
 
             _gg = new GrainGrowth();

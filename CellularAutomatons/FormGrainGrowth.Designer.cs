@@ -145,7 +145,7 @@
             this.comboBoxGg.Items.AddRange(new object[] {
             "Absorbing",
             "Periodic"});
-            this.comboBoxGg.Location = new System.Drawing.Point(10, 94);
+            this.comboBoxGg.Location = new System.Drawing.Point(9, 112);
             this.comboBoxGg.Name = "comboBoxGg";
             this.comboBoxGg.Size = new System.Drawing.Size(121, 23);
             this.comboBoxGg.TabIndex = 15;
@@ -154,7 +154,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 76);
+            this.label2.Location = new System.Drawing.Point(9, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 15);
             this.label2.TabIndex = 16;
@@ -213,7 +213,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 129);
+            this.label5.Location = new System.Drawing.Point(9, 138);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 15);
             this.label5.TabIndex = 22;
@@ -227,7 +227,7 @@
             "Moore",
             "Pentagonal",
             "Hexagonal"});
-            this.comboBoxNeigh.Location = new System.Drawing.Point(11, 147);
+            this.comboBoxNeigh.Location = new System.Drawing.Point(9, 156);
             this.comboBoxNeigh.Name = "comboBoxNeigh";
             this.comboBoxNeigh.Size = new System.Drawing.Size(121, 23);
             this.comboBoxNeigh.TabIndex = 21;
@@ -246,7 +246,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 25);
+            this.label6.Location = new System.Drawing.Point(9, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 15);
             this.label6.TabIndex = 25;
@@ -258,7 +258,7 @@
             this.comboBoxLocation.Items.AddRange(new object[] {
             "Random",
             "Grid"});
-            this.comboBoxLocation.Location = new System.Drawing.Point(10, 43);
+            this.comboBoxLocation.Location = new System.Drawing.Point(10, 41);
             this.comboBoxLocation.Name = "comboBoxLocation";
             this.comboBoxLocation.Size = new System.Drawing.Size(121, 23);
             this.comboBoxLocation.TabIndex = 24;
