@@ -46,10 +46,17 @@
             this.buttonPng = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxLocation = new System.Windows.Forms.ComboBox();
+            this.labelTest = new System.Windows.Forms.Label();
+            this.label789 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.buttonRunMC = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numericUpDownKt = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGrains)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownKt)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBoxGg
@@ -114,7 +121,7 @@
             this.numericUpDownWidth.Size = new System.Drawing.Size(120, 23);
             this.numericUpDownWidth.TabIndex = 9;
             this.numericUpDownWidth.Value = new decimal(new int[] {
-            250,
+            100,
             0,
             0,
             0});
@@ -205,7 +212,7 @@
             this.numericUpDownHeight.Size = new System.Drawing.Size(120, 23);
             this.numericUpDownHeight.TabIndex = 19;
             this.numericUpDownHeight.Value = new decimal(new int[] {
-            250,
+            150,
             0,
             0,
             0});
@@ -246,7 +253,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 23);
+            this.label6.Location = new System.Drawing.Point(9, 45);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 15);
             this.label6.TabIndex = 25;
@@ -258,16 +265,97 @@
             this.comboBoxLocation.Items.AddRange(new object[] {
             "Random",
             "Grid"});
-            this.comboBoxLocation.Location = new System.Drawing.Point(10, 41);
+            this.comboBoxLocation.Location = new System.Drawing.Point(9, 63);
             this.comboBoxLocation.Name = "comboBoxLocation";
             this.comboBoxLocation.Size = new System.Drawing.Size(121, 23);
             this.comboBoxLocation.TabIndex = 24;
+            // 
+            // labelTest
+            // 
+            this.labelTest.AutoSize = true;
+            this.labelTest.Location = new System.Drawing.Point(696, 30);
+            this.labelTest.Name = "labelTest";
+            this.labelTest.Size = new System.Drawing.Size(0, 15);
+            this.labelTest.TabIndex = 26;
+            // 
+            // label789
+            // 
+            this.label789.AutoSize = true;
+            this.label789.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label789.Location = new System.Drawing.Point(40, 7);
+            this.label789.Name = "label789";
+            this.label789.Size = new System.Drawing.Size(53, 37);
+            this.label789.TabIndex = 27;
+            this.label789.Text = "CA";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(672, 7);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(139, 37);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "To drugie";
+            // 
+            // buttonRunMC
+            // 
+            this.buttonRunMC.Location = new System.Drawing.Point(696, 94);
+            this.buttonRunMC.Name = "buttonRunMC";
+            this.buttonRunMC.Size = new System.Drawing.Size(121, 23);
+            this.buttonRunMC.TabIndex = 29;
+            this.buttonRunMC.Text = "Run";
+            this.buttonRunMC.UseVisualStyleBackColor = true;
+            this.buttonRunMC.Click += new System.EventHandler(this.buttonRunMC_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(691, 47);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(20, 15);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "kt:";
+            // 
+            // numericUpDownKt
+            // 
+            this.numericUpDownKt.DecimalPlaces = 4;
+            this.numericUpDownKt.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownKt.Location = new System.Drawing.Point(691, 65);
+            this.numericUpDownKt.Maximum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.numericUpDownKt.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownKt.Name = "numericUpDownKt";
+            this.numericUpDownKt.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDownKt.TabIndex = 30;
+            this.numericUpDownKt.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             // 
             // FormGrainGrowth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 503);
+            this.ClientSize = new System.Drawing.Size(823, 503);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.numericUpDownKt);
+            this.Controls.Add(this.buttonRunMC);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label789);
+            this.Controls.Add(this.labelTest);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboBoxLocation);
             this.Controls.Add(this.buttonPng);
@@ -288,10 +376,12 @@
             this.Controls.Add(this.pictureBoxGg);
             this.Name = "FormGrainGrowth";
             this.Text = "FormGrainGrowth";
+            this.Load += new System.EventHandler(this.FormGrainGrowth_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGrains)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownKt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,5 +408,11 @@
         private System.Windows.Forms.Button buttonPng;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBoxLocation;
+        private System.Windows.Forms.Label labelTest;
+        private System.Windows.Forms.Label label789;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buttonRunMC;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numericUpDownKt;
     }
 }

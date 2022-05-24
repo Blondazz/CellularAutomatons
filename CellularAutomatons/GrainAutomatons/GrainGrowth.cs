@@ -20,7 +20,6 @@ namespace CellularAutomatons.GrainAutomatons
                     most = list.Skip(1).First();
             }
             return most;
-            // return cell != 0 ? cell : neighbours.FirstOrDefault(neighbour => neighbour != 0);
         }
     }
 }

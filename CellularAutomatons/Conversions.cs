@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using CellularAutomatons.GrainAutomatons;
 
 
 namespace CellularAutomatons
@@ -148,6 +149,20 @@ namespace CellularAutomatons
                 for (int j = 0; j < image[0].Length; j++)
                 {
                     dBitmap.SetPixel(j, i, colorList[image[i][j]]);
+                }
+            }
+            var bitmap = new Bitmap(dBitmap.Bitmap);
+            dBitmap.Dispose();
+            return bitmap;
+        }
+        public static Bitmap ConvertJaggedGrainToBitmap(IReadOnlyList<Grain[]> image, int grainAmount, IReadOnlyList<Color> colorList)
+        {
+            var dBitmap = new DirectBitmap(image[0].Length, image.Count);
+            for (int i = 0; i < image.Count; i++)
+            {
+                for (int j = 0; j < image[0].Length; j++)
+                {
+                    dBitmap.SetPixel(j, i, colorList[image[i][j].Value]);
                 }
             }
             var bitmap = new Bitmap(dBitmap.Bitmap);

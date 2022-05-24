@@ -1,8 +1,7 @@
-﻿using CellularAutomatons.IntAutomatons;
-
-namespace CellularAutomatons.GrainAutomatons
+﻿namespace CellularAutomatons.GrainAutomatons
 {
-    public interface IGrainAutomaton : IIntAutomaton
+    public interface IGrainAutomaton
     {
+        public int FindOutput(int cell, params int[] neighbours);
     }
 }
