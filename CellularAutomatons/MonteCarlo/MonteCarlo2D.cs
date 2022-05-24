@@ -113,19 +113,15 @@ namespace CellularAutomatons.GrainAutomatons
             //int[][] field = _field;
             int[][] newField = AddBordersToField(field);
             BoxField(_field);
-            var _copy = CopyArrayBuiltIn<Grain>(_grainField);
-
             var grainList = new List<Grain>();
             foreach (var grainRow in _grainField)
             {
                 grainList.AddRange(grainRow);
             }
             grainList.Shuffle();
-            var grainStack = grainList.ToStack();
 
-            while (grainStack.Count > 0)
+            foreach (var grain in grainList)
             {
-                var grain = grainStack.Pop();
                 var indexes =
                     NeighbourhoodHelper.GetNeighbours(grain.X + 1, grain.Y + 1,
                         _neighbourhood, _conditions, _field);
@@ -190,6 +186,7 @@ namespace CellularAutomatons.GrainAutomatons
 
                 newField[grain.X + 1][grain.Y + 1] = grain.Value;
             }
+            
             return _grainField;
         }
 

@@ -121,10 +121,11 @@
             this.numericUpDownWidth.Size = new System.Drawing.Size(120, 23);
             this.numericUpDownWidth.TabIndex = 9;
             this.numericUpDownWidth.Value = new decimal(new int[] {
-            100,
+            250,
             0,
             0,
             0});
+            this.numericUpDownWidth.ValueChanged += new System.EventHandler(this.numericUpDownWidth_ValueChanged);
             // 
             // buttonGenerateGg
             // 
@@ -138,6 +139,7 @@
             // 
             // buttonRunGg
             // 
+            this.buttonRunGg.Enabled = false;
             this.buttonRunGg.Location = new System.Drawing.Point(9, 380);
             this.buttonRunGg.Name = "buttonRunGg";
             this.buttonRunGg.Size = new System.Drawing.Size(121, 23);
@@ -212,7 +214,7 @@
             this.numericUpDownHeight.Size = new System.Drawing.Size(120, 23);
             this.numericUpDownHeight.TabIndex = 19;
             this.numericUpDownHeight.Value = new decimal(new int[] {
-            150,
+            250,
             0,
             0,
             0});

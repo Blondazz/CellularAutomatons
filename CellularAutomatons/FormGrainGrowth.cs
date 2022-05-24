@@ -300,5 +300,10 @@ namespace CellularAutomatons
                 }
             }
         }
+
+        private void numericUpDownWidth_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
