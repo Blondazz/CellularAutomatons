@@ -9,7 +9,7 @@ namespace CellularAutomatons.GrainAutomatons
         private readonly IGrainAutomaton _automaton;
         private readonly BoundaryConditions _conditions;
         private readonly Neighbourhood _neighbourhood;
-        private Random _r = new Random();
+        private Random _r = new();
 
         public GrainAutomaton2D(int[][] field, IGrainAutomaton automaton,
             BoundaryConditions conditions, Neighbourhood neighbourhood)

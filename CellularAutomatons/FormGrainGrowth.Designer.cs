@@ -52,6 +52,7 @@
             this.buttonRunMC = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDownKt = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGrains)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).BeginInit();
@@ -90,7 +91,7 @@
             this.numericUpDownGrains.Size = new System.Drawing.Size(120, 23);
             this.numericUpDownGrains.TabIndex = 11;
             this.numericUpDownGrains.Value = new decimal(new int[] {
-            10,
+            60,
             0,
             0,
             0});
@@ -347,11 +348,22 @@
             0,
             65536});
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(672, 235);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(142, 37);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "To trzecie";
+            // 
             // FormGrainGrowth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(823, 503);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.numericUpDownKt);
             this.Controls.Add(this.buttonRunMC);
@@ -416,5 +428,6 @@
         private System.Windows.Forms.Button buttonRunMC;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown numericUpDownKt;
+        private System.Windows.Forms.Label label9;
     }
 }

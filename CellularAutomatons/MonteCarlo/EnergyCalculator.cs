@@ -14,10 +14,7 @@ namespace CellularAutomatons.MonteCarlo
                 return (0, 0, cell);
             var initialEnergy = neighList.Count(neighbour => cell != neighbour);
             int randomNeighbour = 0;
-            do
-            {
-                randomNeighbour = neighList[rng.Next(0, neighList.Count)];
-            } while (randomNeighbour == cell);
+            randomNeighbour = neighList[rng.Next(0, neighList.Count)];
 
             var potentialEnergy = neighList.Count(neighbour => randomNeighbour != neighbour);
             return (initialEnergy, potentialEnergy, randomNeighbour);

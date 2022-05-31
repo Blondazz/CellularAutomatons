@@ -23,91 +23,6 @@ namespace CellularAutomatons.GrainAutomatons
             _neighbourhood = neighbourhood;
         }
 
-        //public Grain[][] StartOnce(int[][] field)
-        //{
-        //    //int[][] field = _field;
-        //    int[][] newField = AddBordersToField(field);
-        //    BoxField(_field);
-        //    var _copy = CopyArrayBuiltIn<Grain>(_grainField);
-
-        //    var grainList = new List<Grain>();
-        //    foreach (var grainRow in _grainField)
-        //    {
-        //        grainList.AddRange(grainRow);
-        //    }
-
-        //    grainList.Shuffle();
-
-        //    foreach (var grain in grainList)
-        //    {
-        //        if(grain.X == 1 && grain.Y == 1)
-        //            Console.WriteLine("A");
-        //        var indexes =
-        //            NeighbourhoodHelper.GetNeighbours(grain.X + 1, grain.Y + 1,
-        //                _neighbourhood, _conditions, _field);
-        //        (int, int, int) energy = (0, 0, 0);
-        //        if (_neighbourhood == Neighbourhood.VonNeumann)
-        //        {
-        //            energy = EnergyCalculator.FindOutput(newField[grain.X + 1][grain.Y + 1],
-        //                newField[indexes.Item1[0]][indexes.Item2[0]],
-        //                newField[indexes.Item1[1]][indexes.Item2[1]],
-        //                newField[indexes.Item1[2]][indexes.Item2[2]],
-        //                newField[indexes.Item1[3]][indexes.Item2[3]]
-        //            );
-        //        }
-        //        else if (_neighbourhood == Neighbourhood.Moore)
-        //        {
-        //            energy = EnergyCalculator.FindOutput(newField[grain.X + 1][grain.Y + 1],
-        //                newField[indexes.Item1[0]][indexes.Item2[0]],
-        //                newField[indexes.Item1[1]][indexes.Item2[1]],
-        //                newField[indexes.Item1[2]][indexes.Item2[2]],
-        //                newField[indexes.Item1[3]][indexes.Item2[3]],
-        //                newField[indexes.Item1[4]][indexes.Item2[4]],
-        //                newField[indexes.Item1[5]][indexes.Item2[5]],
-        //                newField[indexes.Item1[6]][indexes.Item2[6]],
-        //                newField[indexes.Item1[7]][indexes.Item2[7]]
-        //            );
-        //        }
-        //        else if (_neighbourhood == Neighbourhood.Pentagonal)
-        //        {
-        //            energy = EnergyCalculator.FindOutput(newField[grain.X + 1][grain.Y + 1],
-        //                newField[indexes.Item1[0]][indexes.Item2[0]],
-        //                newField[indexes.Item1[1]][indexes.Item2[1]],
-        //                newField[indexes.Item1[2]][indexes.Item2[2]],
-        //                newField[indexes.Item1[3]][indexes.Item2[3]],
-        //                newField[indexes.Item1[4]][indexes.Item2[4]]
-        //            );
-        //        }
-        //        else if (_neighbourhood == Neighbourhood.Hexagonal)
-        //        {
-
-        //            energy = EnergyCalculator.FindOutput(newField[grain.X + 1][grain.Y + 1],
-        //                newField[indexes.Item1[0]][indexes.Item2[0]],
-        //                newField[indexes.Item1[1]][indexes.Item2[1]],
-        //                newField[indexes.Item1[2]][indexes.Item2[2]],
-        //                newField[indexes.Item1[3]][indexes.Item2[3]],
-        //                newField[indexes.Item1[4]][indexes.Item2[4]],
-        //                newField[indexes.Item1[5]][indexes.Item2[5]]
-        //            );
-        //        }
-
-        //        if (energy == (0, 0, 0))
-        //            continue;
-        //        var diff = energy.Item2 - energy.Item1;
-        //        if (diff <= 0)
-        //        {
-        //            grain.Value = energy.Item3;
-        //        }
-        //        else
-        //        {
-        //            if (_r.NextDouble() < Math.Exp(-(diff / _kt)))
-        //                grain.Value = energy.Item3;
-        //        }
-        //    }
-
-        //    return _grainField;
-        //}
-
         public Grain[][] StartOnce(int[][] field)
         {
             //int[][] field = _field;
@@ -180,7 +95,7 @@ namespace CellularAutomatons.GrainAutomatons
                 }
                 else
                 {
-                    if (_r.NextDouble() < Math.Exp(-(diff / _kt)))
+                    if (_r.NextDouble() <= Math.Exp(-(diff / _kt)))
                         grain.Value = energy.Item3;
                 }
 
