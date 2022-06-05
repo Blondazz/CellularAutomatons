@@ -103,9 +103,9 @@ namespace CellularAutomatons
                 _g.InterpolationMode = InterpolationMode.NearestNeighbor;
                 _g.PixelOffsetMode = PixelOffsetMode.Half;
                 if(_type == TypeEnum.Normal)
-                    _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
+                    _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
                 else
-                    _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
+                    _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
                 _sw.Stop();
                 try
                 {
@@ -135,6 +135,7 @@ namespace CellularAutomatons
         private void buttonGenerateGg_Click(object sender, EventArgs e)
         {
             _isRunning = false;
+            _recrystallized = -1;
             buttonRunGg.Text = "Run";
             labelSave.Text = string.Empty;
             buttonRunGg.Enabled = true;
@@ -244,9 +245,9 @@ namespace CellularAutomatons
             _g.InterpolationMode = InterpolationMode.NearestNeighbor;
             _g.PixelOffsetMode = PixelOffsetMode.Half;
             if (_type == TypeEnum.Normal)
-                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
+                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
             else
-                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
+                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
             pictureBoxGg.Image = bitmap;
         }
 
@@ -279,9 +280,9 @@ namespace CellularAutomatons
             Bitmap bitmap = new Bitmap(_field[0].Length, _field.Length);
             using var g = Graphics.FromImage(bitmap);
             if (_type == TypeEnum.Normal)
-                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
+                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
             else
-                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
+                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
             bitmap.Save("Grain.png", System.Drawing.Imaging.ImageFormat.Png);
             bitmap.Dispose();
             g.Dispose();
@@ -403,7 +404,8 @@ namespace CellularAutomatons
             {
                 var iterations = 0;
                 var newGrains = (int)numericUpDownSRXAmount.Value;
-                AddGrains(newGrains);
+                if(_recrystallized == -1)
+                    AddGrains(newGrains);
                 while (_isRunningSRX)
                 {
                     if(_NType == NEnum.Frames)

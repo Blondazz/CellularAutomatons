@@ -141,29 +141,42 @@ namespace CellularAutomatons
             return bitmap;
         }
 
-        public static Bitmap ConvertJaggedGrainToBitmap(IReadOnlyList<int[]> image, int grainAmount, IReadOnlyList<Color> colorList)
+        public static Bitmap ConvertJaggedGrainToBitmap(IReadOnlyList<int[]> image, int grainAmount, IReadOnlyList<Color> colorList, IReadOnlyList<Color> colorListStruct)
         {
             var dBitmap = new DirectBitmap(image[0].Length, image.Count);
             for (int i = 0; i < image.Count; i++)
             {
                 for (int j = 0; j < image[0].Length; j++)
                 {
-                    dBitmap.SetPixel(j, i, colorList[image[i][j]]);
+                    if (image[i][j] > 0)
+                        dBitmap.SetPixel(j, i, colorList[image[i][j]]);
+                    else if (image[i][j] < 0)
+                        dBitmap.SetPixel(j, i, colorListStruct[-image[i][j]]);
+                    else
+                        dBitmap.SetPixel(j, i, colorList[image[i][j]]);
                 }
             }
             var bitmap = new Bitmap(dBitmap.Bitmap);
             dBitmap.Dispose();
             return bitmap;
         }
-        public static Bitmap ConvertJaggedGrainToBitmapWithStruct(IReadOnlyList<int[]> image, IReadOnlyList<int[]> structField, int grainAmount, IReadOnlyList<Color> colorList)
+        public static Bitmap ConvertJaggedGrainToBitmapWithStruct(IReadOnlyList<int[]> image, IReadOnlyList<int[]> structField, int grainAmount, IReadOnlyList<Color> colorList, IReadOnlyList<Color> colorListStruct)
         {
             var dBitmap = new DirectBitmap(image[0].Length, image.Count);
             for (int i = 0; i < image.Count; i++)
             {
                 for (int j = 0; j < image[0].Length; j++)
                 {
-                    if(structField[i][j] == 1)
-                        dBitmap.SetPixel(j, i, colorList[image[i][j]]);
+                    if (structField[i][j] == 1)
+                    {
+                        if(image[i][j]>0)
+                            dBitmap.SetPixel(j, i, colorList[image[i][j]]);
+                        else if (image[i][j] < 0)
+                            dBitmap.SetPixel(j, i, colorListStruct[-image[i][j]]);
+                        else
+                            dBitmap.SetPixel(j, i, colorList[image[i][j]]);
+                    }
+
                 }
             }
             var bitmap = new Bitmap(dBitmap.Bitmap);

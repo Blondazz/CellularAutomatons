@@ -148,7 +148,7 @@
             // 
             // buttonGenerateGg
             // 
-            this.buttonGenerateGg.Location = new System.Drawing.Point(11, 388);
+            this.buttonGenerateGg.Location = new System.Drawing.Point(12, 387);
             this.buttonGenerateGg.Name = "buttonGenerateGg";
             this.buttonGenerateGg.Size = new System.Drawing.Size(120, 23);
             this.buttonGenerateGg.TabIndex = 14;
@@ -159,7 +159,7 @@
             // buttonRunGg
             // 
             this.buttonRunGg.Enabled = false;
-            this.buttonRunGg.Location = new System.Drawing.Point(10, 417);
+            this.buttonRunGg.Location = new System.Drawing.Point(12, 416);
             this.buttonRunGg.Name = "buttonRunGg";
             this.buttonRunGg.Size = new System.Drawing.Size(121, 23);
             this.buttonRunGg.TabIndex = 13;
@@ -191,7 +191,7 @@
             // buttonSave
             // 
             this.buttonSave.Enabled = false;
-            this.buttonSave.Location = new System.Drawing.Point(10, 448);
+            this.buttonSave.Location = new System.Drawing.Point(12, 445);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(120, 23);
             this.buttonSave.TabIndex = 17;
@@ -202,7 +202,7 @@
             // labelSave
             // 
             this.labelSave.AutoSize = true;
-            this.labelSave.Location = new System.Drawing.Point(18, 448);
+            this.labelSave.Location = new System.Drawing.Point(13, 368);
             this.labelSave.Name = "labelSave";
             this.labelSave.Size = new System.Drawing.Size(0, 15);
             this.labelSave.TabIndex = 18;
@@ -263,7 +263,7 @@
             // buttonPng
             // 
             this.buttonPng.Enabled = false;
-            this.buttonPng.Location = new System.Drawing.Point(11, 473);
+            this.buttonPng.Location = new System.Drawing.Point(12, 474);
             this.buttonPng.Name = "buttonPng";
             this.buttonPng.Size = new System.Drawing.Size(120, 23);
             this.buttonPng.TabIndex = 23;
