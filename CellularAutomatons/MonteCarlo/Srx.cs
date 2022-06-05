@@ -2,30 +2,34 @@
 using System.Collections.Generic;
 using CellularAutomatons.Enums;
 using CellularAutomatons.Extensions;
+using CellularAutomatons.GrainAutomatons;
 using CellularAutomatons.Helpers;
-using CellularAutomatons.MonteCarlo;
 
-namespace CellularAutomatons.GrainAutomatons
+namespace CellularAutomatons.MonteCarlo
 {
-    public class MonteCarlo2D
+    public class Srx
     {
         private readonly int[][] _field;
         private Grain[][] _grainField { get; set; }
         private readonly BoundaryConditions _conditions;
         private readonly Neighbourhood _neighbourhood;
         private Random _r = new();
-        public double _kt { get; set; }
+        public int BorderH { get; set; }
+        public int MiddleH { get; set; }
+        public TypeEnum Type { get; set; }
+        public int[][] StructureField { get; set; }
 
-        public MonteCarlo2D(int[][] field, BoundaryConditions conditions, Neighbourhood neighbourhood)
+        public Srx(int[][] field, BoundaryConditions conditions, Neighbourhood neighbourhood, TypeEnum type, int[][] structureField)
         {
             _field = field;
             _conditions = conditions;
             _neighbourhood = neighbourhood;
+            Type = type;
+            StructureField = structureField;
         }
 
         public Grain[][] StartOnce(int[][] field)
         {
-            //int[][] field = _field;
             int[][] newField = AddBordersToField(field);
             BoxField(_field);
             var grainList = new List<Grain>();
@@ -33,6 +37,8 @@ namespace CellularAutomatons.GrainAutomatons
             {
                 grainList.AddRange(grainRow);
             }
+            if (Type == TypeEnum.Image)
+                grainList.RemoveAll(x => StructureField[x.X][x.Y] == 0);
             grainList.Shuffle();
 
             foreach (var grain in grainList)
@@ -40,10 +46,10 @@ namespace CellularAutomatons.GrainAutomatons
                 var indexes =
                     NeighbourhoodHelper.GetNeighbours(grain.X + 1, grain.Y + 1,
                         _neighbourhood, _conditions, _field);
-                (int, int, int) energy = (0, 0, 0);
+                (double, int, int) energy = (0, 0, 0);
                 if (_neighbourhood == Neighbourhood.VonNeumann)
                 {
-                    energy = EnergyCalculator.FindOutputMC(newField[grain.X + 1][grain.Y + 1],
+                    energy = EnergyCalculator.FindOutputSRX(MiddleH, BorderH, grain, newField[grain.X + 1][grain.Y + 1],
                         newField[indexes.Item1[0]][indexes.Item2[0]],
                         newField[indexes.Item1[1]][indexes.Item2[1]],
                         newField[indexes.Item1[2]][indexes.Item2[2]],
@@ -52,7 +58,7 @@ namespace CellularAutomatons.GrainAutomatons
                 }
                 else if (_neighbourhood == Neighbourhood.Moore)
                 {
-                    energy = EnergyCalculator.FindOutputMC(newField[grain.X + 1][grain.Y + 1],
+                    energy = EnergyCalculator.FindOutputSRX(MiddleH, BorderH, grain,
                         newField[indexes.Item1[0]][indexes.Item2[0]],
                         newField[indexes.Item1[1]][indexes.Item2[1]],
                         newField[indexes.Item1[2]][indexes.Item2[2]],
@@ -65,7 +71,7 @@ namespace CellularAutomatons.GrainAutomatons
                 }
                 else if (_neighbourhood == Neighbourhood.Pentagonal)
                 {
-                    energy = EnergyCalculator.FindOutputMC(newField[grain.X + 1][grain.Y + 1],
+                    energy = EnergyCalculator.FindOutputSRX(MiddleH, BorderH, grain,
                         newField[indexes.Item1[0]][indexes.Item2[0]],
                         newField[indexes.Item1[1]][indexes.Item2[1]],
                         newField[indexes.Item1[2]][indexes.Item2[2]],
@@ -76,7 +82,7 @@ namespace CellularAutomatons.GrainAutomatons
                 else if (_neighbourhood == Neighbourhood.Hexagonal)
                 {
 
-                    energy = EnergyCalculator.FindOutputMC(newField[grain.X + 1][grain.Y + 1],
+                    energy = EnergyCalculator.FindOutputSRX(MiddleH, BorderH, grain,
                         newField[indexes.Item1[0]][indexes.Item2[0]],
                         newField[indexes.Item1[1]][indexes.Item2[1]],
                         newField[indexes.Item1[2]][indexes.Item2[2]],
@@ -86,25 +92,17 @@ namespace CellularAutomatons.GrainAutomatons
                     );
                 }
 
-                grain.Energy = energy.Item1;
+
                 var diff = energy.Item2 - energy.Item1;
                 if (diff <= 0)
                 {
                     grain.Value = energy.Item3;
-                    grain.Energy = energy.Item2;
+                    grain.Energy = 0;
+                    grain.IsRecrystallized = true;
                 }
-                else
-                {
-                    if (_r.NextDouble() <= Math.Exp(-(diff / _kt)))
-                    {
-                        grain.Value = energy.Item3;
-                        grain.Energy = energy.Item2;
-                    }
-                }
-
                 newField[grain.X + 1][grain.Y + 1] = grain.Value;
             }
-            
+
             return _grainField;
         }
 
@@ -146,7 +144,7 @@ namespace CellularAutomatons.GrainAutomatons
             T[][] newArr = new T[source.Length][];
             for (int i = 0; i < newArr.Length; i++)
             {
-                newArr[i] = (T[]) source[i].Clone();
+                newArr[i] = (T[])source[i].Clone();
             }
 
             return newArr;

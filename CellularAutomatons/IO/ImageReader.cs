@@ -17,5 +17,11 @@ namespace CellularAutomatons.IO
         {
             return new Bitmap(Image.FromFile("image.bmp"));
         }
+
+        public static int[][] ReadGrainData(int width, int height)
+        {
+            var bitmap = new Bitmap(Image.FromFile(@"InputImage\binarized.bmp"), width, height);
+            return Conversions.ImageToJaggedArrayBinary(bitmap);
+        }
     }
 }

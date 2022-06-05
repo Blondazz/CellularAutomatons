@@ -1,4 +1,5 @@
 ﻿using System;
+using CellularAutomatons.Enums;
 using CellularAutomatons.Helpers;
 
 namespace CellularAutomatons.GrainAutomatons

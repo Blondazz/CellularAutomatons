@@ -1,4 +1,4 @@
-﻿namespace CellularAutomatons.Cells
+﻿namespace CellularAutomatons.Enums
 {
     public enum ParticleDirection
     {

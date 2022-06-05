@@ -1,4 +1,4 @@
-﻿namespace CellularAutomatons.GrainAutomatons
+﻿namespace CellularAutomatons.Enums
 {
     public enum Neighbourhood
     {

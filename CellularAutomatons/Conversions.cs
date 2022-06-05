@@ -155,6 +155,21 @@ namespace CellularAutomatons
             dBitmap.Dispose();
             return bitmap;
         }
+        public static Bitmap ConvertJaggedGrainToBitmapWithStruct(IReadOnlyList<int[]> image, IReadOnlyList<int[]> structField, int grainAmount, IReadOnlyList<Color> colorList)
+        {
+            var dBitmap = new DirectBitmap(image[0].Length, image.Count);
+            for (int i = 0; i < image.Count; i++)
+            {
+                for (int j = 0; j < image[0].Length; j++)
+                {
+                    if(structField[i][j] == 1)
+                        dBitmap.SetPixel(j, i, colorList[image[i][j]]);
+                }
+            }
+            var bitmap = new Bitmap(dBitmap.Bitmap);
+            dBitmap.Dispose();
+            return bitmap;
+        }
         public static Bitmap ConvertJaggedGrainToBitmap(IReadOnlyList<Grain[]> image, int grainAmount, IReadOnlyList<Color> colorList)
         {
             var dBitmap = new DirectBitmap(image[0].Length, image.Count);
@@ -168,6 +183,100 @@ namespace CellularAutomatons
             var bitmap = new Bitmap(dBitmap.Bitmap);
             dBitmap.Dispose();
             return bitmap;
+        }
+        public static Bitmap ConvertJaggedGrainToBitmapWithStruct(IReadOnlyList<Grain[]> image, IReadOnlyList<int[]> structField, int grainAmount, IReadOnlyList<Color> colorList)
+        {
+            var dBitmap = new DirectBitmap(image[0].Length, image.Count);
+            for (int i = 0; i < image.Count; i++)
+            {
+                for (int j = 0; j < image[0].Length; j++)
+                {
+                    if (structField[i][j] == 1)
+                        dBitmap.SetPixel(j, i, colorList[image[i][j].Value]);
+                }
+            }
+            var bitmap = new Bitmap(dBitmap.Bitmap);
+            dBitmap.Dispose();
+            return bitmap;
+        }
+
+        public static Image ConvertJaggedGrainEnergyToBitmap(IReadOnlyList<Grain[]> grainField)
+        {
+            var dBitmap = new DirectBitmap(grainField[0].Length, grainField.Count);
+            for (int i = 0; i < grainField.Count; i++)
+            {
+                for (int j = 0; j < grainField[0].Length; j++)
+                {
+                    Color color = grainField[i][j].Energy == 0 ? Color.Black : Color.White;
+                        dBitmap.SetPixel(j, i, color);
+                }
+            }
+            var bitmap = new Bitmap(dBitmap.Bitmap);
+            dBitmap.Dispose();
+            return bitmap;
+        }
+        public static Image ConvertJaggedGrainEnergyToBitmapWithStruct(IReadOnlyList<Grain[]> grainField, IReadOnlyList<int[]> structField)
+        {
+            var dBitmap = new DirectBitmap(grainField[0].Length, grainField.Count);
+            for (int i = 0; i < grainField.Count; i++)
+            {
+                for (int j = 0; j < grainField[0].Length; j++)
+                {
+                    Color color = grainField[i][j].Energy == 0 ? Color.Black : Color.White;
+                    if (structField[i][j] == 1)
+                        dBitmap.SetPixel(j, i, color);
+                }
+            }
+            var bitmap = new Bitmap(dBitmap.Bitmap);
+            dBitmap.Dispose();
+            return bitmap;
+        }
+
+        public static Image ConvertJaggedGrainToBitmapSRX(IReadOnlyList<Grain[]> image, int grainAmount, List<Color> colorListGreen, List<Color> colorListRed)
+        {
+            var dBitmap = new DirectBitmap(image[0].Length, image.Count);
+            for (int i = 0; i < image.Count; i++)
+            {
+                for (int j = 0; j < image[0].Length; j++)
+                {
+                    dBitmap.SetPixel(j, i,
+                        image[i][j].Value > 0 ? colorListGreen[image[i][j].Value] : colorListRed[-image[i][j].Value]);
+                }
+            }
+            var bitmap = new Bitmap(dBitmap.Bitmap);
+            dBitmap.Dispose();
+            return bitmap;
+        }
+        public static Image ConvertJaggedGrainToBitmapSRXWithStruct(IReadOnlyList<Grain[]> image, IReadOnlyList<int[]> structField, int grainAmount, List<Color> colorListGreen, List<Color> colorListRed)
+        {
+            var dBitmap = new DirectBitmap(image[0].Length, image.Count);
+            for (int i = 0; i < image.Count; i++)
+            {
+                for (int j = 0; j < image[0].Length; j++)
+                {
+                    if (structField[i][j] == 1)
+                        dBitmap.SetPixel(j, i,
+                        image[i][j].Value > 0 ? colorListGreen[image[i][j].Value] : colorListRed[-image[i][j].Value]);
+                }
+            }
+            var bitmap = new Bitmap(dBitmap.Bitmap);
+            dBitmap.Dispose();
+            return bitmap;
+        }
+
+        public static int[][] ImageToJaggedArrayBinary(Bitmap bitmap)
+        {
+            int[][] field = new int[bitmap.Width][];
+            for (int i = 0; i < field.Length; i++)
+            {
+                field[i] = new int[bitmap.Height];
+                for (int j = 0; j < field[i].Length; j++)
+                {
+                    field[i][j] = bitmap.GetPixel(j, i) == Color.FromArgb(255,255,255,255) ? 0 : 1;
+                }
+            }
+
+            return field;
         }
     }
 }

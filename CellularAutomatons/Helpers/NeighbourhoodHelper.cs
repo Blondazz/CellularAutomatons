@@ -1,5 +1,6 @@
 ﻿
 using System;
+using CellularAutomatons.Enums;
 using CellularAutomatons.GrainAutomatons;
 
 namespace CellularAutomatons.Helpers
@@ -12,7 +13,7 @@ namespace CellularAutomatons.Helpers
         {
             Index[] jIndexes = new Index[1];
             Index[] kIndexes = new Index[1];
-            if (neighbourhood == GrainAutomatons.Neighbourhood.VonNeumann)
+            if (neighbourhood == Neighbourhood.VonNeumann)
             {
                 if (conditions == BoundaryConditions.Periodic)
                 {
@@ -36,7 +37,7 @@ namespace CellularAutomatons.Helpers
                     kIndexes = new Index[] { k, k - 1, k + 1, k };
                 }
             }
-            else if (neighbourhood == GrainAutomatons.Neighbourhood.Moore)
+            else if (neighbourhood == Neighbourhood.Moore)
             {
                 if (conditions == BoundaryConditions.Periodic)
                 {
@@ -60,7 +61,7 @@ namespace CellularAutomatons.Helpers
                     kIndexes = new Index[] { k - 1, k, k + 1, k - 1, k + 1, k - 1, k, k + 1 };
                 }
             }
-            else if (neighbourhood == GrainAutomatons.Neighbourhood.Pentagonal)
+            else if (neighbourhood == Neighbourhood.Pentagonal)
             {
                 int direction = rng.Next(0, 4); //LURD
 

@@ -1,5 +1,6 @@
 ﻿using CellularAutomatons.Cells;
 using System;
+using CellularAutomatons.Enums;
 
 namespace CellularAutomatons.LgaAutomaton
 {
