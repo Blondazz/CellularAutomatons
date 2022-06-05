@@ -103,9 +103,9 @@ namespace CellularAutomatons
                 _g.InterpolationMode = InterpolationMode.NearestNeighbor;
                 _g.PixelOffsetMode = PixelOffsetMode.Half;
                 if(_type == TypeEnum.Normal)
-                    _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
+                    _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
                 else
-                    _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
+                    _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
                 _sw.Stop();
                 try
                 {
@@ -245,9 +245,9 @@ namespace CellularAutomatons
             _g.InterpolationMode = InterpolationMode.NearestNeighbor;
             _g.PixelOffsetMode = PixelOffsetMode.Half;
             if (_type == TypeEnum.Normal)
-                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
+                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
             else
-                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
+                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList), new Rectangle(Point.Empty, bitmap.Size));
             pictureBoxGg.Image = bitmap;
         }
 
@@ -277,15 +277,7 @@ namespace CellularAutomatons
 
         private void buttonPng_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(_field[0].Length, _field.Length);
-            using var g = Graphics.FromImage(bitmap);
-            if (_type == TypeEnum.Normal)
-                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmap(_field, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
-            else
-                _g.DrawImage(Conversions.ConvertJaggedGrainToBitmapWithStruct(_field, _structureField, _grainAmount, _colorList, _recrystColorList), new Rectangle(Point.Empty, bitmap.Size));
-            bitmap.Save("Grain.png", System.Drawing.Imaging.ImageFormat.Png);
-            bitmap.Dispose();
-            g.Dispose();
+            pictureBoxGg.Image.Save("Grain.png", System.Drawing.Imaging.ImageFormat.Png);
         }
 
         private void FormGrainGrowth_Load(object sender, EventArgs e)
