@@ -267,7 +267,10 @@ namespace CellularAutomatons
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            TxtSaver.SaveGrain(_field, "grain.txt");
+            if(_type == TypeEnum.Normal)
+                TxtSaver.SaveGrain(_field, "grain.txt");
+            else
+                TxtSaver.SaveGrainStruct(_field, _structureField, "grain.txt");
             labelSave.Text = "Saved to grain.txt";
         }
 

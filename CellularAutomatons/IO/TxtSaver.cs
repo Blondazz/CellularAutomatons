@@ -20,5 +20,24 @@ namespace CellularAutomatons.IO
             using var sw = new StreamWriter(path);
             sw.Write(sb.ToString());
         }
+        public static void SaveGrainStruct(int[][] field, int[][] structureField, string path)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < field.Length; i++)
+            {
+                for (int j = 0; j < field[i].Length; j++)
+                {
+                    if (structureField[i][j] == 1)
+                        sb.Append($"{i},");
+                    else
+                        sb.Append("0,");
+
+                }
+                sb.Append("\n");
+            }
+
+            using var sw = new StreamWriter(path);
+            sw.Write(sb.ToString());
+        }
     }
 }
